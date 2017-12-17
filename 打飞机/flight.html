@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta http-equiv="refresh" content="5" id='meta-fresh' > -->
+        <title>打飞机</title>
+          <style>
+              canvas{
+                  border: solid 1px red;
+              }
+          </style>
+    </head>
+    <body>
+
+        <input id="id-input-fps" type="range" value="30">
+        <span style="display: block;"></span>
+        <canvas id="id-canvas" width="400" height="600"></canvas>
+
+        <div class="">
+            <input type="range" class="input-slider" value=""
+            min="-3"
+            max="3"data-value= "config.bg_speed">
+            BG速度
+            <span class="label"></span>
+
+        </div>
+
+
+        <div class="">
+            <input type="range" class="input-slider" value="" data-value= "config.hero_speed">
+            hero速度
+            <span class="label"></span>
+
+        </div>
+
+        <div class="">
+            <input type="range" class="input-slider" value=""
+            min="0"
+            max="10"data-value= "config.fire_cooldown">
+            cooldown
+            <span class="label"></span>
+        </div>
+
+        <div class="">
+            <input type="range" class="input-slider" value="" data-value= "config.bullet_speed">
+            bullet速度
+            <span class="label"></span>
+
+        </div>
+
+        <!-- <div class="">
+            <input type="range" class="input-slider" value="" data-value='play_speed'>
+            <span>cooldown</span>
+            <span class="label"></span>
+        </div> -->
+
+
+        <script src="game/utility.js"></script>
+        <script src="game/gameEvents.js"></script>
+        <!-- config doc -->
+
+        <script src="game/Img.js"></script>
+        <script src="scene/bg.js"></script>
+        <script src="scene/hero.js"></script>
+        <script src="scene/enemy.js"></script>
+        <script src="scene/scene_main.js"></script>
+
+        <script src="main.js"></script>
+
+        <script>
+
+        var es = sel => document.querySelectorAll(sel)
+
+        var bindAll = function (sel, eventName, callback) {
+            var l = es(sel)
+            for (var i = 0; i < l.length; i++) {
+                var input = l[i]
+                input.addEventListener(eventName, function (event) {
+                    callback(event)
+                })
+            }
+        }
+
+        bindAll('.input-slider', 'input', function (event) {
+        var target = event.target
+        var bindvalue = target.dataset.value
+        var v = target.value
+        log('b', bindvalue)
+        eval(bindvalue + '=' + v)
+
+        var p = target.parentElement
+        var label = p.querySelector('.label')
+        label.innerText = v
+        })
+        </script>
+
+        <!-- <script src="scene/bg.js"></script> -->
+
+        <!--
+        <script src="game/game_scene.js"></script>
+        <script src="game/img.js"></script>
+        <script src="scene/bullet.js"></script>
+
+         -->
+
+
+
+    </body>
+</html>
